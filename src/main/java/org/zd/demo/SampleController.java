@@ -39,6 +39,11 @@ public class SampleController {
         return "greeting";
     }
 
+    @RequestMapping("/page")
+    public String page(){
+        return "bootpage";
+    }
+
 //    public static void main(String[] args) throws Exception {
 //        SpringApplication.run(SampleController.class, args);
 //    }
