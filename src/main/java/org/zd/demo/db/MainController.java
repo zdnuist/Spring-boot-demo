@@ -2,6 +2,7 @@ package org.zd.demo.db;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,5 +32,19 @@ public class MainController {
 	public @ResponseBody Iterable<User> getAllUsers() {
 		// This returns a JSON or XML with the users
 		return userRepository.findAll();
+	}
+
+	@GetMapping(path="/alls")
+	public  String getAllUsers(Model model) {
+		// This returns a JSON or XML with the users
+		model.addAttribute("list",userRepository.findAll());
+		return "users";
+	}
+
+	@GetMapping(path="/name")
+	public  String getName(@RequestParam String name,Model model) {
+		// This returns a JSON or XML with the users
+		model.addAttribute("list",userRepository.findByName(name));
+		return "users";
 	}
 }
